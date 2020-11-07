@@ -24,12 +24,14 @@ class SMSParser():
     def parse(self, text):
         # add some placeholders for error handling
         sections = text.strip().split() + [''] * 2
-        features = ['wiki', 'translate', 'grammar', 'mathpix']
+        features = ['help', 'wiki', 'translate', 'grammar', 'mathpix']
         try:
             feature = sections[0]
             if feature not in features:
                 return 'Feature not found'
-            if feature == 'wiki':
+            elif feature == 'help':
+                return self.commands()
+            elif feature == 'wiki':
                 action = sections[1]
                 wiki_actions = ['search', 'summary', 'content']
                 if action not in wiki_actions:
@@ -52,6 +54,6 @@ class SMSParser():
 
 if __name__ == "__main__":
     sms_parser = SMSParser()
-    print(sms_parser.commands())
-    command = '''grammar i relly liek koding'''
+    command = 'translate en me gusta mucho comer las manzanas'
+    command = 'help'
     print(sms_parser.parse(command))
