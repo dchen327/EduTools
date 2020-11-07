@@ -4,7 +4,7 @@ import translators as ts
 class Translate():
 
     def translate(self, text, dest='en'):
-        return ts.google(text, to_language=dest)
+        return ts.bing(text, to_language=dest)
 
 
 if __name__ == "__main__":
