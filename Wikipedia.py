@@ -12,6 +12,10 @@ class Wikipedia():
     def summary(self, topic):
         return wikipedia.summary(topic)
 
+    def content(self, topic):
+        page = wikipedia.page(topic)
+        return page.content
+
 
 if __name__ == "__main__":
     wiki = Wikipedia()
