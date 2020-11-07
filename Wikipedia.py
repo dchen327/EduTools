@@ -16,3 +16,4 @@ class Wikipedia():
 if __name__ == "__main__":
     wiki = Wikipedia()
     print(wiki.search('code'))
+    print(wiki.summary('hackathon'))
