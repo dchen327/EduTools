@@ -15,7 +15,7 @@ class Grammar():
         message = ''
         res = self.client.check(text)
         for i, match in enumerate(res.matches):
-            message += f'{i+1}. {match.message}, {match.replacements[:3]}\n'
+            message += f'\n{i+1}. {match.message}, {match.replacements[:3]}\n'
         return message
 
 
