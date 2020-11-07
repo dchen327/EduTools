@@ -6,6 +6,9 @@ import base64
 import requests
 import json
 import wolframalpha
+from PIL import Image
+from io import BytesIO
+import urllib.parse
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -16,6 +19,10 @@ WOLFRAM_APP_ID = os.environ.get("WOLFRAM_APP_ID")
 
 
 class MathSolver():
+
+    def __init__(self):
+        self.client = wolframalpha.Client(WOLFRAM_APP_ID)
+
     def read_math(self, file_path):
         image_uri = "data:image/jpg;base64," + \
             base64.b64encode(open(file_path, "rb").read()).decode()
@@ -25,7 +32,8 @@ class MathSolver():
             "app_key": MATHPIX_KEY
         }
         r = requests.post('https://api.mathpix.com/v3/text',
-                          data=json.dumps({'src': image_uri,"formats":["data"],"data_options":{"include_asciimath":"true"}}),
+                          data=json.dumps({'src': image_uri, "formats": [
+                                          "data"], "data_options": {"include_asciimath": "true"}}),
                           headers=headers)
 
         json_objects = json.loads(r.text)
@@ -34,16 +42,23 @@ class MathSolver():
         return ascii_str
 
     def solve_math(self, ascii_str):
-        client = wolframalpha.Client(WOLFRAM_APP_ID)
-        res = client.query(ascii_str)
+        res = self.client.query(ascii_str)
+        print(res.keys())
+        for pod in res.pods:
+            for sub in pod.subpods:
+                print(sub.plaintext)
         # return next(res.results).text
-        return res.text
-        
+        # return res.text
+
+    def solve_math2(self, ascii_str):
+        query = f'http://api.wolframalpha.com/v1/simple?appid={WOLFRAM_APP_ID}&i={urllib.parse.quote(ascii_str)}'
+        res = requests.get(query)
+        i = Image.open(BytesIO(res.content))
+        i.save('math.png')
 
 
 if __name__ == "__main__":
     solver = MathSolver()
-    equation = solver.read_math('test3.jpg')
-    equation = f'r"{equation}"'
+    equation = solver.read_math('test.jpg')
     print(equation)
-    print(solver.solve_math(equation))
+    print(solver.solve_math2('Find zeros: ' + equation))
