@@ -54,11 +54,19 @@ class MathSolver():
         query = f'http://api.wolframalpha.com/v1/simple?appid={WOLFRAM_APP_ID}&i={urllib.parse.quote(ascii_str)}'
         res = requests.get(query)
         i = Image.open(BytesIO(res.content))
+        url = 'https://file.io/'
+
+        files = {
+            'file': res.content
+        }
+
+        resp = requests.post(url, files=files)
         i.save('math.png')
+        print(resp.content)
 
 
 if __name__ == "__main__":
     solver = MathSolver()
-    equation = solver.read_math('test.jpg')
+    equation = solver.read_math('test1.jpg')
     print(equation)
     print(solver.solve_math2('Find zeros: ' + equation))
