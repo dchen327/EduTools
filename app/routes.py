@@ -3,6 +3,7 @@ from flask import Flask, request, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 import requests
 import SendSMS
+from SMSParser import SMSParser
 
 @app.route('/')
 @app.route('/index')
@@ -14,20 +15,9 @@ def sms():
     incoming_msg = request.values.get('Body','').lower()
     resp = MessagingResponse()
     msg = resp.message()
-    responded = False
-    if '1' in incoming_msg:
-        msg.body('Math Solver')
-        responded = True
-    elif '2' in incoming_msg:
-        msg.body('Wikipedia')
-        responded = True
-    elif '3' in incoming_msg:
-        msg.body('Due Dates')
-        responded = True
-    elif '4' in incoming_msg:
-        msg.body('GoodBye!')
-        responded = True
-    if not responded:
-        msg.body('You had some invalid input')
-
+    sms_parser = SMSParser()
+    if 'start' in incoming_msg:
+        msg.body(sms_parser.commands())
+    msg.body(sms_parser.parse(incoming_msg))
+    
     return str(resp)
