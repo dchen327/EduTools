@@ -12,10 +12,14 @@ class Grammar():
         self.client = GrammarBotClient(api_key=rapidapi_key)
 
     def check(self, text):
+        message = ''
         res = self.client.check(text)
-        return res.matches
+        for i, match in enumerate(res.matches):
+            message += f'{i+1}. {match.message}, {match.replacements[:3]}\n'
+        return message
 
 
 if __name__ == "__main__":
     grammar = Grammar()
-    print(grammar.check('I cant remember how to go their'))
+    print(grammar.check(
+        'I cant remember how to go their. I hope your doing wel, becaues this grmmar chrkcker should of done it\'s job'))
