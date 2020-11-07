@@ -27,7 +27,6 @@ def sms():
     elif '4' in incoming_msg:
         msg.body('GoodBye!')
         responded = True
-        running = False
     if not responded:
         msg.body('You had some invalid input')
 
