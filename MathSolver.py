@@ -25,23 +25,25 @@ class MathSolver():
             "app_key": MATHPIX_KEY
         }
         r = requests.post('https://api.mathpix.com/v3/text',
-                          data=json.dumps({'src': image_uri}),
+                          data=json.dumps({'src': image_uri,"formats":["data"],"data_options":{"include_asciimath":"true"}}),
                           headers=headers)
 
         json_objects = json.loads(r.text)
-        latex_str = json_objects['latex_styled']
+        ascii_str = json_objects['data'][0]['value']
 
-        return latex_str
+        return ascii_str
 
-    def solve_math(self, latex_str):
+    def solve_math(self, ascii_str):
         client = wolframalpha.Client(WOLFRAM_APP_ID)
-        res = client.query(latex_str)
-        return next(res.results).text
+        res = client.query(ascii_str)
+        # return next(res.results).text
+        return res.text
+        
 
 
 if __name__ == "__main__":
     solver = MathSolver()
-    equation = solver.read_math('test.jpg')
+    equation = solver.read_math('test3.jpg')
     equation = f'r"{equation}"'
     print(equation)
     print(solver.solve_math(equation))
