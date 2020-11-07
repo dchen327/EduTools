@@ -3,8 +3,8 @@ import wikipedia
 
 class Wikipedia():
 
-    def search(self, search_term):
-        terms = wikipedia.search(search_term)[:5]
+    def search(self, topic):
+        terms = wikipedia.search(topic)[:5]
         message = '<Wikipedia topics>\n'
         message += '\n'.join(terms)
         return message
