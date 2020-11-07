@@ -25,30 +25,33 @@ class SMSParser():
         # add some placeholders for error handling
         sections = text.strip().split() + [''] * 2
         features = ['wiki', 'translate', 'grammar', 'mathpix']
-        feature = sections[0]
-        if feature not in features:
-            return 'Feature not found'
-        if feature == 'wiki':
-            action = sections[1]
-            wiki_actions = ['search', 'summary', 'content']
-            if action not in wiki_actions:
-                return 'Action not found'
-            text = ' '.join(sections[2:])
-            return getattr(self.wiki, action)(text)
-        elif feature == 'translate':
-            dest_lang = sections[1]
-            text = ' '.join(sections[2:])
-            return self.translate.translate(text, dest=dest_lang)
-        elif feature == 'mathpix':
-            pass
-        elif feature == 'grammar':
-            text = ' '.join(sections[1:])
-            print(text)
-            return self.grammar.check(text)
+        try:
+            feature = sections[0]
+            if feature not in features:
+                return 'Feature not found'
+            if feature == 'wiki':
+                action = sections[1]
+                wiki_actions = ['search', 'summary', 'content']
+                if action not in wiki_actions:
+                    return 'Action not found'
+                text = ' '.join(sections[2:])
+                return getattr(self.wiki, action)(text)
+            elif feature == 'translate':
+                dest_lang = sections[1]
+                text = ' '.join(sections[2:])
+                return self.translate.translate(text, dest=dest_lang)
+            elif feature == 'mathpix':
+                pass
+            elif feature == 'grammar':
+                text = ' '.join(sections[1:])
+                print(text)
+                return self.grammar.check(text)
+        except:
+            return 'Something went wrong. Please double-check your command!'
 
 
 if __name__ == "__main__":
     sms_parser = SMSParser()
     print(sms_parser.commands())
-    command = '''grammar check i relly liek koding'''
+    command = '''grammar i relly liek koding'''
     print(sms_parser.parse(command))
