@@ -7,8 +7,9 @@ import requests
 import json
 import wolframalpha
 from PIL import Image
-from io import BytesIO
+import io
 import urllib.parse
+from imgurpython import ImgurClient
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -16,6 +17,8 @@ load_dotenv(dotenv_path)
 MATHPIX_SID = os.environ.get("MATHPIX_SID")
 MATHPIX_KEY = os.environ.get("MATHPIX_KEY")
 WOLFRAM_APP_ID = os.environ.get("WOLFRAM_APP_ID")
+IMGUR_ID=os.environ.get("IMGUR_ID")
+IMGUR_SECRET=("IMGUR_SECRET")
 
 
 class MathSolver():
@@ -52,20 +55,25 @@ class MathSolver():
 
     def solve_math2(self, ascii_str):
         query = f'http://api.wolframalpha.com/v1/simple?appid={WOLFRAM_APP_ID}&i={urllib.parse.quote(ascii_str)}'
+        print(query)
         res = requests.get(query)
-        i = Image.open(BytesIO(res.content))
-        url = 'https://file.io/'
-
+        i = Image.open(io.BytesIO(res.content))
+        imgByteArr = io.BytesIO()
+        i.save(imgByteArr, format="PNG", optimize=True, quality=95)
+        imgByteArr = imgByteArr.getvalue()
+        url = 'https://api.imgur.com/3/image'
         files = {
-            'file': res.content
+            'image': imgByteArr
         }
-
-        resp = requests.post(url, files=files)
-        return resp.json()['link']
+        headers = {"Authorization":f"Client-ID {IMGUR_ID}"}
+        resp = requests.post(url, data=files, headers=headers)
+        return resp.json()['data']['link']
 
 
 if __name__ == "__main__":
     solver = MathSolver()
     equation = solver.read_math('test1.jpg')
     print(equation)
-    print(solver.solve_math2('Find zeros: ' + equation))
+    print(solver.solve_math2("find zeroes for: " + equation))
+
+
