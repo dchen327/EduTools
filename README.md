@@ -5,7 +5,7 @@ As the COVID19 pandemic worsens globally, online learning has severely impacted 
 Phone ownership is vastly more widespread than consistent internet access. Just 6% of children in eastern and southern Africa have access to the internet, yet cell phone ownership can be as high as 82%.
 
 ## What it does:
-EduTools makes traditional online learning accessible without the need of internet access, all you need is a basic phone.
+EduTools makes traditional online learning accessible without the need of internet access, all you need is a basic phone. Using Twilio API to receive and send SMS messages between 
 
 ## How I built it:
 
@@ -18,3 +18,7 @@ EduTools makes traditional online learning accessible without the need of intern
 ## What's next:
 
 ## Built With
+Love
+
+## Contributors
+David, Daniel, Rohit, Nate 
