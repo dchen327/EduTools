@@ -61,8 +61,7 @@ class MathSolver():
         }
 
         resp = requests.post(url, files=files)
-        i.save('math.png')
-        print(resp.content)
+        return resp.json()['link']
 
 
 if __name__ == "__main__":
