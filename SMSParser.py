@@ -48,7 +48,7 @@ class SMSParser():
                 return self.translate.translate(text, dest=dest_lang)
             elif feature == 'mathpix':
                 equation = self.math_solver.read_math('test1.jpg')
-                return self.math_solver.solve_math2(equation)
+                return self.math_solver.solve_math2("find zeroes for:" + equation)
             elif feature == 'grammar':
                 text = ' '.join(sections[1:])
                 return self.grammar.check(text)
