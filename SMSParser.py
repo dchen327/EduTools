@@ -15,7 +15,7 @@ class SMSParser():
 
     def commands(self):
         commands = '''List of commands:
-        1. help
+        1. commands
         2. wiki <search/summary/content> <topic>
         3. translate <dest lang abbrev.> <text>
         4. grammar <text>
@@ -26,12 +26,12 @@ class SMSParser():
     def parse(self, text):
         # add some placeholders for error handling
         sections = text.strip().split() + [''] * 2
-        features = ['help', 'wiki', 'translate', 'grammar', 'mathpix']
+        features = ['commands', 'wiki', 'translate', 'grammar', 'mathpix']
         try:
             feature = sections[0]
             if feature not in features:
                 return 'Feature not found'
-            elif feature == 'help':
+            elif feature == 'commands':
                 return self.commands()
             elif feature == 'wiki':
                 action = sections[1]
