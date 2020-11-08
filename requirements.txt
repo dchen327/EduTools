@@ -14,6 +14,7 @@ httpcore==0.9.1
 httpx==0.13.3
 hyperframe==5.2.0
 idna==2.10
+imgurpython==1.1.7
 inflect==4.1.0
 isort==5.6.4
 itsdangerous==1.1.0
