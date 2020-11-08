@@ -9,7 +9,7 @@ EduTools makes traditional online learning accessible without the need of intern
 
 ## How I built it:
 - Twilio API to receive/send SMS messages
-- Flask backend to process and organize communcation
+- Flask backend to process and organize communication
 - State of the art natural language processing APIs for Wikipedia, translation, and grammar checking, OCR & Wolfram|Alpha for math solving
 
 ## Challenges:
