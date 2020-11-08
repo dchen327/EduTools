@@ -5,6 +5,6 @@ from wtforms.validators import DataRequired, Length
 class AnnouncementForm(FlaskForm):
     message = TextAreaField('Announcement Message:', [
         DataRequired()])
-    recipient = SelectField(u'Send To:', choices=[('All Students'),('Daniel Li'),('David Chen')])
+    recipient = SelectField(u'Send To:', choices=[('All Students'),('Daniel Li'),('David Chen'),('Nate Sawant'),('Rohit Lakshman')])
     submit = SubmitField('Submit')
     

@@ -22,7 +22,9 @@ def announcements():
         
         phonebook = {
             'Daniel Li': '6099377475',
-            'David Chen': '6099175688'
+            'David Chen': '6099175688',
+            'Nate Sawant': '6094338636',
+            'Rohit Lakshman': '6094804404'
         }
 
         if recipient == 'All Students':
