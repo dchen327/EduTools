@@ -16,8 +16,6 @@ def sms():
     resp = MessagingResponse()
     msg = resp.message()
     sms_parser = SMSParser()
-    if 'start' in incoming_msg:
-        msg.body(sms_parser.commands())
     result = sms_parser.parse(incoming_msg)
     if 'i.imgur.com' not in result:
         msg.body(result)
