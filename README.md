@@ -15,12 +15,20 @@ EduTools makes traditional online learning accessible without the need of intern
 ## Challenges:
 - Many APIs are out of date, so we had to modify and customize many queries to ensure proper functionality and error handling
 - Integration of OCR and Wolfram|Alpha was difficult, and we needed to tune settings to optimize both image recognition and equation solving, and fitting everything into a text message
+- Styling the teacher portal was difficult, and designing for both practicality and aesthetics meant we needed to compromise in many aspects
 
 ## Accomplishments that we're proud of:
+- Developing a consistent, user-friendly cross-platform API for mobile SMS usage
+- Optimizing the number of text messages (many SMS plans are limited, so we want to be efficient in communication)
+- Developing and iterating on an early prototype, adding diversity of functionality, from english and math to foreign language and general knowledge
 
 ## What I learned:
+- Starting off with organized planning documents is super important: all the object oriented programming design was scripted out in UML diagrams, and the UI mockups were designed in Adobe Illustrator
+- Having testers quickly highlights bugs and unanticipated actions, continuous testing and refactoring quickly increased user experience
 
 ## What's next:
+- More features! School isn't just academics; we can include functionality for clubs, sports, community service, and other events
+- Additional student resources: recipe finders, meditation, and workouts
 
 ## Built With
 Love
