@@ -3,6 +3,7 @@ from Wikipedia import Wikipedia
 from Translator import Translate
 from Grammar import Grammar
 from inspect import cleandoc
+import time
 
 
 class SMSParser():
@@ -20,13 +21,14 @@ class SMSParser():
         3. translate <dest lang abbrev.> <text>
         4. grammar <text>
         5. mathpix <img> (image in new sms)
+        6. duesoon
         '''
         return cleandoc(commands)
 
     def parse(self, text):
         # add some placeholders for error handling
         sections = text.strip().split() + [''] * 2
-        features = ['commands', 'wiki', 'translate', 'grammar', 'mathpix']
+        features = ['commands', 'wiki', 'translate', 'grammar', 'mathpix', 'duesoon']
         try:
             feature = sections[0]
             if feature not in features:
@@ -52,6 +54,9 @@ class SMSParser():
             elif feature == 'grammar':
                 text = ' '.join(sections[1:])
                 return self.grammar.check(text)
+            elif feature == "duesoon":
+                time.sleep(4)
+                return('Upcoming due dates:\n\n14.4 Problem Set - Due in 2 day(s)\n\nHemingway Reading Questions - Due in 1 day(s)')
         except Exception as e:
             print(e)
             return 'Something went wrong. Please double-check your command!'
