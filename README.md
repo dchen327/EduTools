@@ -13,6 +13,8 @@ EduTools makes traditional online learning accessible without the need of intern
 - State of the art natural language processing APIs for Wikipedia, translation, and grammar checking, OCR & Wolfram|Alpha for math solving
 
 ## Challenges:
+- Many APIs are out of date, so we had to modify and customize many queries to ensure proper functionality and error handling
+- Integration of OCR and Wolfram|Alpha was difficult, and we needed to tune settings to optimize both image recognition and equation solving, and fitting everything into a text message
 
 ## Accomplishments that we're proud of:
 
