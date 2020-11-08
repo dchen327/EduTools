@@ -17,8 +17,8 @@ load_dotenv(dotenv_path)
 MATHPIX_SID = os.environ.get("MATHPIX_SID")
 MATHPIX_KEY = os.environ.get("MATHPIX_KEY")
 WOLFRAM_APP_ID = os.environ.get("WOLFRAM_APP_ID")
-IMGUR_ID=os.environ.get("IMGUR_ID")
-IMGUR_SECRET=("IMGUR_SECRET")
+IMGUR_ID = os.environ.get("IMGUR_ID")
+IMGUR_SECRET = ("IMGUR_SECRET")
 
 
 class MathSolver():
@@ -65,8 +65,9 @@ class MathSolver():
         files = {
             'image': imgByteArr
         }
-        headers = {"Authorization":f"Client-ID {IMGUR_ID}"}
+        headers = {"Authorization": f"Client-ID {IMGUR_ID}"}
         resp = requests.post(url, data=files, headers=headers)
+        print(resp)
         return resp.json()['data']['link']
 
 
@@ -75,5 +76,3 @@ if __name__ == "__main__":
     equation = solver.read_math('test1.jpg')
     print(equation)
     print(solver.solve_math2("find zeroes for: " + equation))
-
-
