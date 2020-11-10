@@ -1,4 +1,5 @@
 # EduTools
+Winner of HackPHS 2020
 ## Inspiration
 As the COVID19 pandemic worsens globally, online learning has severely impacted inequality as schools are forced to decide between putting lives at risk and providing an accessible education. 
 
